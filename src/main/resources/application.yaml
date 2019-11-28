@@ -1,9 +1,0 @@
-
-server:
-  port: 10086
-
-com:
-  yunyang:
-    caClient:
-      url: http://172.18.111.114:7054
-      properties:

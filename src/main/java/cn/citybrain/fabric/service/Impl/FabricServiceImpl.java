@@ -2,13 +2,19 @@ package cn.citybrain.fabric.service.Impl;
 
 import cn.citybrain.fabric.entity.AppUser;
 import cn.citybrain.fabric.service.FabricService;
-import org.hyperledger.fabric.sdk.Enrollment;
+import org.hyperledger.fabric.sdk.*;
+import org.hyperledger.fabric.sdk.exception.TransactionException;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
 import org.hyperledger.fabric_ca.sdk.RegistrationRequest;
 import org.hyperledger.fabric_ca.sdk.exception.EnrollmentException;
 import org.hyperledger.fabric_ca.sdk.exception.InvalidArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  * created by yeric on 2019/11/28
@@ -18,6 +24,31 @@ public class FabricServiceImpl implements FabricService {
 
     @Autowired
     private HFCAClient hfcaClient;
+    @Autowired
+    private HFClient hfClient;
+
+
+    public Channel createChannel(String channelName, Orderer order, String txPath, AppUser userInfo) throws IOException, org.hyperledger.fabric.sdk.exception.InvalidArgumentException, TransactionException {
+        hfClient.setUserContext(userInfo);
+        ChannelConfiguration channelConfiguration = new ChannelConfiguration(new File(txPath));
+        return hfClient.newChannel(channelName, order, channelConfiguration, hfClient.getChannelConfigurationSignature(channelConfiguration, hfClient.getUserContext()));
+    }
+
+    public Orderer getOrderer(String name, String grpcUrl, String tlsFilePath,AppUser userInfo) throws org.hyperledger.fabric.sdk.exception.InvalidArgumentException {
+        Properties properties = new Properties();
+        properties.setProperty("pemFile",tlsFilePath);
+        hfClient.setUserContext(userInfo);
+        Orderer orderer = hfClient.newOrderer(name,grpcUrl,properties);
+        return orderer;
+    }
+
+    public Peer getPeer(String name, String grpcUrl, String tlsFilePath,AppUser userInfo) throws org.hyperledger.fabric.sdk.exception.InvalidArgumentException {
+        Properties properties = new Properties();
+        properties.setProperty("pemFile",tlsFilePath);
+        hfClient.setUserContext(userInfo);
+        Peer peer = hfClient.newPeer(name,grpcUrl,properties);
+        return peer;
+    }
 
     public String register(AppUser registar, AppUser register) throws Exception {
         System.out.println(hfcaClient);
