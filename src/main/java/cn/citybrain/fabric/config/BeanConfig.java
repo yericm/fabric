@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 
 /**
+ * https://github.com/yericm/fabric.git
  * created by yeric on 2019/11/28
  */
 @Configuration
