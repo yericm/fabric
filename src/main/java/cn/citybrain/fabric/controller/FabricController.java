@@ -64,13 +64,15 @@ public class FabricController {
         AppUser register = new AppUser();
         AppUser registar = new AppUser();
         try {
-            register.setName("lihua");
+            register.setName("lihua11");
             register.setAffiliation("org1");
-            Enrollment enrollment = fabricServiceImpl.enroll("admin","adminpw");
+            Enrollment enrollment = fabricServiceImpl.enroll("admin","adminpw1");
             registar.setName("admin");
             registar.setAffiliation("org1");
             registar.setEnrollment(enrollment);
-            return fabricServiceImpl.register(registar, register);
+            String secret = fabricServiceImpl.register(registar, register);
+            System.out.println("证书："+secret);
+            return secret;
         } catch (Exception e) {
             throw new RuntimeException("注册失败");
         }

@@ -1,19 +1,19 @@
 
 server:
-  port: 10086
+  port: 1008
 
 com:
   yunyang:
     caClient:
-      url: http://192.168.137.7:7054
+      url: https://172.18.111.113:7054
       properties:
     fabricClient:
       certificate:
-        keyFolderPath: G:\code\fabric\fabric\src\main\resources\crypto-config\peerOrganizations\org1.example.com\users\Admin@org1.example.com\msp\keystore
+        keyFolderPath: E:\code\fabricdemo\src\main\resources\crypto-config\peerOrganizations\org1.example.com\users\Admin@org1.example.com\msp\keystore
         keyFileName: f75eb00da05777bc86579077169c84d4878c0a3adeed0e9160b82d32969c0431_sk
-        certFoldePath: G:\code\fabric\fabric\src\main\resources\crypto-config\peerOrganizations\org1.example.com\users\Admin@org1.example.com\msp\admincerts
+        certFoldePath: E:\code\fabricdemo\src\main\resources\crypto-config\peerOrganizations\org1.example.com\users\Admin@org1.example.com\msp\admincerts
         certFileName: Admin@org1.example.com-cert.pem
-        tlsOrderFilePath: G:\code\fabric\fabric\src\main\resources\crypto-config\ordererOrganizations\example.com\tlsca\tlsca.example.com-cert.pem
-        txfilePath: G:\code\fabric\fabric\src\main\resources\crypto-config\testChannel.tx
-        tlsPeerFilePath: G:\code\fabric\fabric\src\main\resources\crypto-config\peerOrganizations\org1.example.com\msp\tlscacerts\tlsca.org1.example.com-cert.pem
+        tlsOrderFilePath: E:\code\fabricdemo\src\main\resources\crypto-config\ordererOrganizations\example.com\tlsca\tlsca.example.com-cert.pem
+        txfilePath: E:\code\fabricdemo\src\main\resources\crypto-config\testChannel.tx
+        tlsPeerFilePath: E:\code\fabricdemo\src\main\resources\crypto-config\peerOrganizations\org1.example.com\msp\tlscacerts\tlsca.org1.example.com-cert.pem
 

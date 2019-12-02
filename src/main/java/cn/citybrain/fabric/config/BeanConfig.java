@@ -11,8 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Properties;
 
 /**
  * https://github.com/yericm/fabric.git
@@ -31,8 +35,17 @@ public class BeanConfig {
     private HFClient hfClient;
 
     @Bean
-    public HFCAClient hfCaClient () throws MalformedURLException, IllegalAccessException, InvocationTargetException, InvalidArgumentException, InstantiationException, NoSuchMethodException, CryptoException, ClassNotFoundException {
-        hfcaClient = HFCAClient.createNewInstance(caClientUrl, null);
+    public HFCAClient hfCaClient () throws IOException, IllegalAccessException, InvocationTargetException, InvalidArgumentException, InstantiationException, NoSuchMethodException, CryptoException, ClassNotFoundException, org.hyperledger.fabric_ca.sdk.exception.InvalidArgumentException {
+        Properties testprops = new Properties();
+
+        testprops.setProperty("pemFile", "src/crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem"); // has 1
+//        String path = this.getClass().getClassLoader().getResource("crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem").getPath();
+//        testprops.setProperty("pemFile", path.substring(1, path.length()));
+        testprops.put("allowAllHostNames", "true");
+//        testprops.put("pemBytes", Files.readAllBytes(Paths.get("src/crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem")));
+//        hfcaClient = HFCAClient.createNewInstance(caClientUrl, testprops);
+//        hfcaClient = HFCAClient.createNewInstance("http://192.168.137.7:8054", null);
+        hfcaClient = HFCAClient.createNewInstance(caClientUrl, testprops);
         CryptoSuite cryptoSuite = CryptoSuite.Factory.getCryptoSuite();
         hfcaClient.setCryptoSuite(cryptoSuite);
         return hfcaClient;

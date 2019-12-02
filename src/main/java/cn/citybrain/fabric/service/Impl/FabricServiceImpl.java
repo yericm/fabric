@@ -2,6 +2,8 @@ package cn.citybrain.fabric.service.Impl;
 
 import cn.citybrain.fabric.entity.AppUser;
 import cn.citybrain.fabric.service.FabricService;
+import io.netty.util.internal.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.TransactionException;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
@@ -9,7 +11,6 @@ import org.hyperledger.fabric_ca.sdk.RegistrationRequest;
 import org.hyperledger.fabric_ca.sdk.exception.EnrollmentException;
 import org.hyperledger.fabric_ca.sdk.exception.InvalidArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -20,6 +21,7 @@ import java.util.Properties;
  * created by yeric on 2019/11/28
  */
 @Service
+@Slf4j
 public class FabricServiceImpl implements FabricService {
 
     @Autowired
@@ -51,9 +53,9 @@ public class FabricServiceImpl implements FabricService {
     }
 
     public String register(AppUser registar, AppUser register) throws Exception {
-        System.out.println(hfcaClient);
         RegistrationRequest request = new RegistrationRequest(register.getName(),register.getAffiliation());
-        return hfcaClient.register(request,registar);
+        String secret = hfcaClient.register(request, registar);
+        return secret;
     }
 
     /**
