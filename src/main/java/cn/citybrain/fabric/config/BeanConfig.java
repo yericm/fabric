@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -30,6 +31,8 @@ public class BeanConfig {
 
     @Value("${com.yunyang.caClient.url}")
     private String caClientUrl;
+    @Value("${com.yunyang.caClient.caPemPath}")
+    private String caPemPath;
 
     private HFCAClient hfcaClient;
     private HFClient hfClient;
@@ -38,7 +41,7 @@ public class BeanConfig {
     public HFCAClient hfCaClient () throws IOException, IllegalAccessException, InvocationTargetException, InvalidArgumentException, InstantiationException, NoSuchMethodException, CryptoException, ClassNotFoundException, org.hyperledger.fabric_ca.sdk.exception.InvalidArgumentException {
         Properties testprops = new Properties();
 
-        testprops.setProperty("pemFile", "src/crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem"); // has 1
+        testprops.setProperty("pemFile", caPemPath); // has 1
 //        String path = this.getClass().getClassLoader().getResource("crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem").getPath();
 //        testprops.setProperty("pemFile", path.substring(1, path.length()));
         testprops.put("allowAllHostNames", "true");

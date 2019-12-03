@@ -26,24 +26,24 @@ import java.security.spec.InvalidKeySpecException;
 @Controller
 @RequestMapping("fabric/ca/user")
 public class FabricController {
-    @Autowired
-    private FabricService fabricServiceImpl;
-    @Value("${com.yunyang.fabricClient.certificate.keyFolderPath}")
-    private String keyFolderPath;
-    @Value("${com.yunyang.fabricClient.certificate.keyFileName}")
-    private String keyFileName;
-    @Value("${com.yunyang.fabricClient.certificate.certFoldePath}")
-    private String certFoldePath;
-    @Value("${com.yunyang.fabricClient.certificate.certFileName}")
-    private String certFileName;
-    @Value("${com.yunyang.fabricClient.certificate.tlsOrderFilePath}")
-    private String tlsOrderFilePath;
-    @Value("${com.yunyang.fabricClient.certificate.txfilePath}")
-    private String txfilePath;
-    @Value("${com.yunyang.fabricClient.certificate.tlsPeerFilePath}")
-    private String tlsPeerFilePath;
+//    @Autowired
+//    private FabricService fabricServiceImpl;
+//    @Value("${com.yunyang.fabricClient.certificate.keyFolderPath}")
+//    private String keyFolderPath;
+//    @Value("${com.yunyang.fabricClient.certificate.keyFileName}")
+//    private String keyFileName;
+//    @Value("${com.yunyang.fabricClient.certificate.certFoldePath}")
+//    private String certFoldePath;
+//    @Value("${com.yunyang.fabricClient.certificate.certFileName}")
+//    private String certFileName;
+//    @Value("${com.yunyang.fabricClient.certificate.tlsOrderFilePath}")
+//    private String tlsOrderFilePath;
+//    @Value("${com.yunyang.fabricClient.certificate.txfilePath}")
+//    private String txfilePath;
+//    @Value("${com.yunyang.fabricClient.certificate.tlsPeerFilePath}")
+//    private String tlsPeerFilePath;
 
-    @PostMapping(value = "createChannel")
+  /*  @PostMapping(value = "createChannel")
     public Channel createChannel () throws InvalidKeySpecException, NoSuchAlgorithmException, CryptoException, IOException, InvalidArgumentException, TransactionException, ProposalException {
         AppUser appUser = new AppUser();
         appUser.setAffiliation("Org1");
@@ -58,8 +58,8 @@ public class FabricController {
         channel.joinPeer(fabricServiceImpl.getPeer("peer0.org1.example.com","grpcs://peer0.org1.example.com:7051",tlsPeerFilePath, appUser));
         channel.initialize();
         return channel;
-    }
-    @PostMapping(value = "register")
+    }*/
+   /* @PostMapping(value = "register")
     public String register () {
         AppUser register = new AppUser();
         AppUser registar = new AppUser();
@@ -76,5 +76,5 @@ public class FabricController {
         } catch (Exception e) {
             throw new RuntimeException("注册失败");
         }
-    }
+    }*/
 }

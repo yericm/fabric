@@ -1,4 +1,35 @@
+#
+#country:
+#  countryConfig:
+#    HZSZF:
+#      - url: https://172.18.111.113:7054
+#        path: src/crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem
+country:
+  countryConfig:
+    aue:
+      - lang: zh
+        isDefault: true
+    hk:
+      - lang: zh
+        isDefault: true
 
+orgs:
+  - id: HZSZF
+    Name: 杭州市政府
+    useTls: true
+    ca:
+      domain: ca.HZSZF.citybrain.com
+      protocol: http
+      pemFile:
+    peers:
+      - domain: peer0.HZSZF.citybrain.com
+        protocol: grpc # grpc or grpcs
+        pemFile:
+      - domain: peer1.HZSZF.citybrain.com
+        protocol: grpc
+        pemFile:
+    channels:
+      - citybrainchannel
 server:
   port: 1008
 
@@ -6,14 +37,25 @@ com:
   yunyang:
     caClient:
       url: https://172.18.111.113:7054
-      properties:
-    fabricClient:
-      certificate:
-        keyFolderPath: E:\code\fabricdemo\src\main\resources\crypto-config\peerOrganizations\org1.example.com\users\Admin@org1.example.com\msp\keystore
-        keyFileName: f75eb00da05777bc86579077169c84d4878c0a3adeed0e9160b82d32969c0431_sk
-        certFoldePath: E:\code\fabricdemo\src\main\resources\crypto-config\peerOrganizations\org1.example.com\users\Admin@org1.example.com\msp\admincerts
-        certFileName: Admin@org1.example.com-cert.pem
-        tlsOrderFilePath: E:\code\fabricdemo\src\main\resources\crypto-config\ordererOrganizations\example.com\tlsca\tlsca.example.com-cert.pem
-        txfilePath: E:\code\fabricdemo\src\main\resources\crypto-config\testChannel.tx
-        tlsPeerFilePath: E:\code\fabricdemo\src\main\resources\crypto-config\peerOrganizations\org1.example.com\msp\tlscacerts\tlsca.org1.example.com-cert.pem
-
+      caPemPath: src/crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem
+    orgs:
+      - id: HZSZF
+        Name: 杭州市政府
+        useTls: true
+        ca:
+          domain: ca.HZSZF.citybrain.com
+          protocol: http
+          pemFile:
+        peers:
+          - domain: peer0.HZSZF.citybrain.com
+            protocol: grpc # grpc or grpcs
+            pemFile:
+          - domain: peer1.HZSZF.citybrain.com
+            protocol: grpc
+            pemFile:
+        channels:
+          - citybrainchannel
+#    tes:
+#      maps:
+#        key1: 15
+#        key2: 2
