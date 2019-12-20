@@ -36,8 +36,14 @@ server:
 com:
   yunyang:
     caClient:
-      url: https://172.18.111.113:7054
-      caPemPath: src/crypto-config/peerOrganizations/HZSZF.citybrain.com/ca/ca.HZSZF.citybrain.com-cert.pem
+#      url: https://172.18.111.166:7054
+#      caPemPath: src/testCrypto/crypto/hzssjzyj.citybrain-test.com/ca/ca.hzssjzyj.citybrain-test.com-cert.pem
+#       url: https://172.18.71.135:8054
+#       caPemPath: src/crypto-config/peerOrganizations/org2.example.com/ca/ca.org2.example.com-cert.pem
+       url: https://172.18.71.135:7054
+       caPemPath: src/crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
+#      url: http://192.168.137.7:7054
+#      caPemPath: src/crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
     orgs:
       - id: HZSZF
         Name: 杭州市政府
@@ -55,7 +61,3 @@ com:
             pemFile:
         channels:
           - citybrainchannel
-#    tes:
-#      maps:
-#        key1: 15
-#        key2: 2

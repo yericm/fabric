@@ -1,6 +1,9 @@
 package cn.citybrain.fabric.utils;
 
+import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
 import org.bouncycastle.crypto.CryptoException;
+import org.bouncycastle.openssl.PEMParser;
+import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.hyperledger.fabric.sdk.Enrollment;
 
 import javax.xml.bind.DatatypeConverter;
@@ -76,5 +79,19 @@ public class UserUtils {
             brKey.close();
         }
        return new CAEnrollment(key, certificate);
+    }
+    /**
+     * 获取private key
+     * @param content
+     * @return
+     * @throws IOException
+     */
+    public static PrivateKey getPrivateKeyFromBytes(byte[] content) throws IOException {
+        final Reader pemReader = new StringReader(new String(content));
+        final PrivateKeyInfo pemPair;
+
+        PEMParser pemParser = new PEMParser(pemReader);
+        pemPair = (PrivateKeyInfo) pemParser.readObject();
+        return new JcaPEMKeyConverter().getPrivateKey(pemPair);
     }
 }

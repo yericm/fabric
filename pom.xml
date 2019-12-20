@@ -72,7 +72,11 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.0.Final</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.citybrain</groupId>
+            <artifactId>FabricJavaBaseSDK</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>
